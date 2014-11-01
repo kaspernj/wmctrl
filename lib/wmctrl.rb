@@ -11,7 +11,7 @@ class Wmctrl
 
     process = list.first
 
-    window_process = Wmctrl::WindowProcess.list.select{ |window_process| window_process.pid == process.pid }.first
+    window_process = Wmctrl::WindowProcess.list(grep: process.pid).select{ |window_process| window_process.pid == process.pid }.first
     raise "No window process with that PID: #{process.pid}" unless window_process
 
     window_process.focus

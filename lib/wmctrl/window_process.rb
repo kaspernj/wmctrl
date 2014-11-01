@@ -1,6 +1,9 @@
 class Wmctrl::WindowProcess
-  def self.list
-    res = Knj::Os.shellcmd("wmctrl -lp")
+  def self.list(args)
+    cmd = "wmctrl -lp"
+    cmd << " | grep \"#{args[:grep]}\"" if args[:grep]
+
+    res = Knj::Os.shellcmd(cmd)
     ret = [] unless block_given?
 
     res.scan(/^(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(.+?)$/) do |match|
