@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/wmctrl"
+
+command = ARGV[0].to_s.strip
+raise "Invalid command: #{command}" unless command.length > 0
+Wmctrl.focus_by_command(command)
