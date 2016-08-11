@@ -37,6 +37,8 @@ class Wmctrl::WindowProcess
   end
 
   def focus
+    puts "WindowID: #{window_id}"
+
     %x[wmctrl -ia #{window_id}]
   end
 
